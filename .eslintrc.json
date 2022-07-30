@@ -19,7 +19,10 @@
   },
   "rules": {
     "react/no-unknown-property": "off",
-    "no-unused-vars": "warn"
+    "no-unused-vars": "warn",
+    "no-var": "error",
+    "max-depth": ["error", 2],
+    "no-console": "warn"
   },
   "env": {
     "browser": true,
