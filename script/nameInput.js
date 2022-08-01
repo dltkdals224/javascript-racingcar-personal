@@ -2,16 +2,24 @@ import { deleteCarNameInGameField, deleteRaceLogInGameField } from './deleteLogi
 
 const getGameInput = () => {
   const CAR_NAME_INPUT = document.querySelector('#car-name__input');
-  const GAME_INPUT_CONTAINER = document.querySelector('#game-count-container');
+  const CAR_NAME_BUTTON = document.querySelector('#car-name__button');
+
+  const GAME_INPUT_CONTAINER = document.querySelector('#game-count__input-container');
+  const RACER_NAME_CONTAINER = document.querySelector('#car-name-field');
 
   const CAR_NAME_ARRAY = CAR_NAME_INPUT.value.split(',');
   const IS_VALID = isValidInputValueOfCarName(CAR_NAME_ARRAY);
 
   if (IS_VALID) {
     GAME_INPUT_CONTAINER.classList.remove('visible__hidden');
+    RACER_NAME_CONTAINER.classList.remove('visible__hidden');
+
     deleteCarNameInGameField();
     deleteRaceLogInGameField();
     setCarNameList(CAR_NAME_ARRAY);
+
+    CAR_NAME_INPUT.readOnly = true;
+    CAR_NAME_BUTTON.disabled = true;
   }
   if (!IS_VALID) {
     GAME_INPUT_CONTAINER.classList.add('visible__hidden');
@@ -21,7 +29,7 @@ const getGameInput = () => {
 };
 
 const setCarNameList = carNameArray => {
-  const CAR_NAME_CONTAINER = document.querySelector('#racer-name-container');
+  const CAR_NAME_CONTAINER = document.querySelector('#car-name-field');
 
   carNameArray.map((name, ind) => {
     const SINGLE_RACE_LOG = document.createElement('div');
@@ -44,13 +52,15 @@ const isValidInputValueOfCarName = carNameArray => {
     alert('혼자서는 경기를 할 수 없어.');
     return false;
   }
-  if (NAME_ARRAY_LENGTH > 5) {
-    alert('5개보다 적은 수의 차를 입력해줘.');
-    return false;
-  }
 
-  // 이름 길이
   for (let i = 0; i < NAME_ARRAY_LENGTH; i++) {
+    // 공백
+    if (carNameArray[i].trim().length === 0) {
+      alert(`${i + 1}번째 차 이름 확인해줘. 이름은 공백으로만 이루어질 수 없어.`);
+      return false;
+    }
+
+    // 이름 길이
     if (carNameArray[i].length > 5) {
       alert(`${i + 1}번째 차 이름 확인해줘. 이름은 5글자 이내로 작성해야 해.`);
       return false;

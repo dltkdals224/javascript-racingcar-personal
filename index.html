@@ -13,31 +13,27 @@
       <div id="racing-game-container">
         <div class="game-title">🏎️ 자동차 경주 게임 🏎️</div>
 
-        <div id="car-name-container" class="game-input-container">
+        <div id="car-name__input-container">
           <span class="input__info"> 5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요. </span>
           <div class="input__bundle">
             <input id="car-name__input" type="text" />
-            <div class="button-wrapper">
-              <button id="car-name__button">확인</button>
-            </div>
+            <button id="car-name__button">확인</button>
           </div>
         </div>
 
-        <div id="game-count-container" class="game-input-container visible__hidden">
+        <div id="game-count__input-container" class="visible__hidden">
           <span class="input__info">시도할 횟수를 입력해주세요.</span>
           <div class="input__bundle">
             <input id="game-count__input" type="number" />
-            <div class="button-wrapper">
-              <button id="game-count__button">확인</button>
-            </div>
+            <button id="game-count__button">확인</button>
           </div>
         </div>
 
-        <div id="racer-name-container" class="visible__hidden"></div>
-        <div id="race-log-container" class="visible__hidden"></div>
+        <div id="car-name-field" class="visible__hidden"></div>
+        <div id="race-log-field"></div>
 
-        <div class="race-winner visible__hidden"></div>
-        <button class="race-restart__button visible__hidden">다시 시작하기</button>
+        <div id="race-winner-name" class="visible__hidden"></div>
+        <button id="game-restart__button" class="visible__hidden">다시 시작하기</button>
       </div>
     </section>
 

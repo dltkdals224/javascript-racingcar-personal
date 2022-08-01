@@ -3,13 +3,15 @@ import { deleteAll } from './deleteLogic.js';
 export const startGame = (carNum, gameNum) => {
   setField(carNum);
 
-  const EACH_RACE_LOG = document.querySelectorAll('.race-log-container');
+  const EACH_RACE_LOG = document.querySelectorAll('.race-log-personal');
   const ADVANCED_COUNT = [];
   for (let i = 0; i < EACH_RACE_LOG.length; i++) {
     ADVANCED_COUNT[i] = 0;
   }
 
   let gameCount = 0;
+
+  const GAME_BOX = document.querySelector('#race-log-field');
 
   let term = setInterval(function () {
     if (gameCount < gameNum) {
@@ -23,12 +25,13 @@ export const startGame = (carNum, gameNum) => {
       findWinner(ADVANCED_COUNT, gameNum);
     }
     gameCount++;
+    GAME_BOX.scrollTop = GAME_BOX.scrollHeight;
   }, 1000);
 };
 
 const findWinner = (numberOfAdvancedLog, gameNum) => {
-  const WINNER_NAME = document.querySelector('.race-winner');
-  const CAR_NAME_CONTAINER = document.querySelector('#racer-name-container');
+  const WINNER_NAME = document.querySelector('#race-winner-name');
+  const CAR_NAME_CONTAINER = document.querySelector('#car-name-field');
 
   const WINNER_LIST = [];
   const PLAYER_LIST = [];
@@ -36,12 +39,13 @@ const findWinner = (numberOfAdvancedLog, gameNum) => {
     PLAYER_LIST[k] = CAR_NAME_CONTAINER.children[k].innerHTML;
   }
 
+  const MAX_VALUE = Math.max(...numberOfAdvancedLog);
   // 우승자 만족 조건
   for (let i = 0; i < numberOfAdvancedLog.length; i++) {
-    if (numberOfAdvancedLog[i] >= Math.ceil(gameNum / 2)) {
+    if (numberOfAdvancedLog[i] === MAX_VALUE) {
       WINNER_LIST[i] = true;
     }
-    if (numberOfAdvancedLog[i] === 0 || numberOfAdvancedLog[i] < Math.ceil(gameNum / 1.5)) {
+    if (numberOfAdvancedLog[i] !== MAX_VALUE) {
       WINNER_LIST[i] = false;
     }
   }
@@ -60,14 +64,14 @@ const findWinner = (numberOfAdvancedLog, gameNum) => {
 };
 
 const endGame = () => {
-  const RESTART_BUTTON = document.querySelector('.race-restart__button');
+  const RESTART_BUTTON = document.querySelector('#game-restart__button');
   RESTART_BUTTON.classList.remove('visible__hidden');
 
   RESTART_BUTTON.addEventListener('click', deleteAll);
 };
 
 const setField = carNum => {
-  const RACE_LOG = document.querySelector('#race-log-container');
+  const RACE_LOG = document.querySelector('#race-log-field');
 
   for (let i = 0; i < carNum; i++) {
     const personalZone = document.createElement('div');
