@@ -1,11 +1,12 @@
-import { deleteCarNameInGameField, deleteRaceLogInGameField } from './deleteLogic.js';
+import { $ } from '../lib/util/DOM.js';
 
 const getGameInput = () => {
-  const CAR_NAME_INPUT = document.querySelector('#car-name__input');
-  const CAR_NAME_BUTTON = document.querySelector('#car-name__button');
+  const CAR_NAME_INPUT = $('#car-name__input');
+  const CAR_NAME_BUTTON = $('#car-name__button');
 
-  const GAME_INPUT_CONTAINER = document.querySelector('#game-count__input-container');
-  const RACER_NAME_CONTAINER = document.querySelector('#car-name-field');
+  const GAME_INPUT_CONTAINER = $('#game-count-container');
+
+  const RACER_NAME_CONTAINER = $('#car-name-field');
 
   const CAR_NAME_ARRAY = CAR_NAME_INPUT.value.split(',');
   const IS_VALID = isValidInputValueOfCarName(CAR_NAME_ARRAY);
@@ -14,22 +15,15 @@ const getGameInput = () => {
     GAME_INPUT_CONTAINER.classList.remove('visible__hidden');
     RACER_NAME_CONTAINER.classList.remove('visible__hidden');
 
-    deleteCarNameInGameField();
-    deleteRaceLogInGameField();
     setCarNameList(CAR_NAME_ARRAY);
 
     CAR_NAME_INPUT.readOnly = true;
     CAR_NAME_BUTTON.disabled = true;
   }
-  if (!IS_VALID) {
-    GAME_INPUT_CONTAINER.classList.add('visible__hidden');
-    deleteCarNameInGameField();
-    deleteRaceLogInGameField();
-  }
 };
 
 const setCarNameList = carNameArray => {
-  const CAR_NAME_CONTAINER = document.querySelector('#car-name-field');
+  const CAR_NAME_CONTAINER = $('#car-name-field');
 
   carNameArray.map((name, ind) => {
     const SINGLE_RACE_LOG = document.createElement('div');
@@ -49,31 +43,31 @@ const isValidInputValueOfCarName = carNameArray => {
 
   // 개수
   if (NAME_ARRAY_LENGTH <= 1) {
-    alert('혼자서는 경기를 할 수 없어.');
+    alert('혼자서는 경기를 할 수 없습니다.');
     return false;
   }
 
   for (let i = 0; i < NAME_ARRAY_LENGTH; i++) {
     // 공백
     if (carNameArray[i].trim().length === 0) {
-      alert(`${i + 1}번째 차 이름 확인해줘. 이름은 공백으로만 이루어질 수 없어.`);
+      alert(`${i + 1}번째 차 이름 확인해주세요. 이름은 공백으로만 이루어질 수 없습니다.`);
       return false;
     }
 
     // 이름 길이
     if (carNameArray[i].length > 5) {
-      alert(`${i + 1}번째 차 이름 확인해줘. 이름은 5글자 이내로 작성해야 해.`);
+      alert(`${i + 1}번째 차 이름 확인해주세요. 이름은 5글자 이내로 작성해야 해야합니다.`);
       return false;
     }
     if (carNameArray[i].length === 0) {
-      alert(`${i + 1}번째 차 이름 확인해줘. 차 이름이 존재해야 해.`);
+      alert(`${i + 1}번째 차 이름 확인해주세요. 차 이름이 존재해야 합니다.`);
       return false;
     }
   }
 
   // 중복 확인
   if (carNameArray.length !== DUP_CAR_NAME_ARRAY.size) {
-    alert('중복되는 이름이 존재해.');
+    alert('중복되는 차 이름이 존재합니다.');
     return false;
   }
 
@@ -81,7 +75,7 @@ const isValidInputValueOfCarName = carNameArray => {
 };
 
 (function () {
-  const CAR_NAME_BUTTON = document.querySelector('#car-name__button');
+  const CAR_NAME_BUTTON = $('#car-name__button');
 
   CAR_NAME_BUTTON.addEventListener('click', getGameInput);
 })();

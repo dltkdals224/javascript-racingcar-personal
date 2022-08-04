@@ -1,18 +1,20 @@
-import { deleteAll } from './deleteLogic.js';
+import { $, $$ } from '../lib/util/DOM.js';
+
+import { deleteAll } from '../lib/util/reset.js';
+import getRandomNumber from '../lib/util/getRandomNumber.js';
 
 export const startGame = (carNum, gameNum) => {
   setField(carNum);
 
-  const EACH_RACE_LOG = document.querySelectorAll('.race-log-personal');
+  const EACH_RACE_LOG = $$('.race-log');
   const ADVANCED_COUNT = [];
   for (let i = 0; i < EACH_RACE_LOG.length; i++) {
     ADVANCED_COUNT[i] = 0;
   }
 
+  const RACE_FIELD = $('#race-log-field');
+
   let gameCount = 0;
-
-  const GAME_BOX = document.querySelector('#race-log-field');
-
   let term = setInterval(function () {
     if (gameCount < gameNum) {
       EACH_RACE_LOG.forEach((log, index) => {
@@ -25,27 +27,27 @@ export const startGame = (carNum, gameNum) => {
       findWinner(ADVANCED_COUNT, gameNum);
     }
     gameCount++;
-    GAME_BOX.scrollTop = GAME_BOX.scrollHeight;
+    RACE_FIELD.scrollTop = RACE_FIELD.scrollHeight;
   }, 1000);
 };
 
 const findWinner = (numberOfAdvancedLog, gameNum) => {
-  const WINNER_NAME = document.querySelector('#race-winner-name');
-  const CAR_NAME_CONTAINER = document.querySelector('#car-name-field');
+  const WINNER_NAME = $('#race-winner-name');
+  const CAR_NAME_CONTAINER = $('#car-name-field');
 
-  const WINNER_LIST = [];
   const PLAYER_LIST = [];
   for (let k = 0; k < CAR_NAME_CONTAINER.children.length; k++) {
     PLAYER_LIST[k] = CAR_NAME_CONTAINER.children[k].innerHTML;
   }
 
-  const MAX_VALUE = Math.max(...numberOfAdvancedLog);
+  const ADVANCES_OF_WINNER = Math.max(...numberOfAdvancedLog);
+  const WINNER_LIST = [];
   // 우승자 만족 조건
   for (let i = 0; i < numberOfAdvancedLog.length; i++) {
-    if (numberOfAdvancedLog[i] === MAX_VALUE) {
+    if (numberOfAdvancedLog[i] === ADVANCES_OF_WINNER) {
       WINNER_LIST[i] = true;
     }
-    if (numberOfAdvancedLog[i] !== MAX_VALUE) {
+    if (numberOfAdvancedLog[i] !== ADVANCES_OF_WINNER) {
       WINNER_LIST[i] = false;
     }
   }
@@ -64,18 +66,18 @@ const findWinner = (numberOfAdvancedLog, gameNum) => {
 };
 
 const endGame = () => {
-  const RESTART_BUTTON = document.querySelector('#game-restart__button');
+  const RESTART_BUTTON = $('#game-restart__button');
   RESTART_BUTTON.classList.remove('visible__hidden');
 
   RESTART_BUTTON.addEventListener('click', deleteAll);
 };
 
 const setField = carNum => {
-  const RACE_LOG = document.querySelector('#race-log-field');
+  const RACE_LOG = $('#race-log-field');
 
   for (let i = 0; i < carNum; i++) {
     const personalZone = document.createElement('div');
-    personalZone.classList.add('race-log-personal');
+    personalZone.classList.add('race-log');
 
     RACE_LOG.appendChild(personalZone);
   }
@@ -110,8 +112,8 @@ const insertValue = (component, numberOfAdvancedLog, index) => {
   }, 500);
 };
 
-const canMove = () => {
-  const RANDOM_VALUE = Math.floor(10 * Math.random());
+export const canMove = () => {
+  const RANDOM_VALUE = getRandomNumber(0, 10);
 
   if (RANDOM_VALUE >= 4) {
     return true;

@@ -35,8 +35,8 @@ section {
   text-align: center;
 }
 
-#car-name__input-container,
-#game-count__input-container {
+#car-name-container,
+#game-count-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -151,7 +151,7 @@ section {
 
   width: 90px;
 }
-.race-log-personal {
+.race-log {
   display: flex;
   justify-self: flex-start;
   align-self: flex-start;
