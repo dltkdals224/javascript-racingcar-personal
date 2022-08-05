@@ -9,20 +9,17 @@ section {
   background-color: #f9f9f9;
 }
 
-.game-container {
+#racing-game-container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   gap: 15px;
 
-  width: 50%;
-  height: 80%;
-
   min-width: 560px;
   min-height: 600px;
-  max-width: 640px;
-  max-height: 700px;
+
+  padding: 10px;
 
   background-color: white;
 }
@@ -30,7 +27,7 @@ section {
 .game-title {
   margin: 30px 0;
 
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-size: 34px;
   font-weight: 600;
   line-height: 36px;
@@ -38,43 +35,35 @@ section {
   text-align: center;
 }
 
-.game-input-container {
+#car-name-container,
+#game-count-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
 
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
   letter-spacing: 0.5px;
   text-align: left;
 }
-.game-input-container .input__bundle {
+.input__bundle {
   display: flex;
+  align-items: center;
   gap: 10px;
 
   width: 400px;
 }
-.game-input-container .input__bundle input {
+.input__bundle input {
   width: 300px;
   height: 24px;
 }
-.game-input-container .input__bundle .button-wrapper {
-  display: flex;
-  justify-self: center;
-  align-items: center;
+.input__bundle button {
+  width: 50px;
+  height: 30px;
 
-  width: 64px;
-
-  border-radius: 4px;
-  background-color: #00bcd4;
-}
-.game-input-container .input__bundle button {
-  width: 100%;
-  height: 100%;
-
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -86,22 +75,26 @@ section {
 
   cursor: pointer;
 }
-.game-input-container .input__bundle button:hover {
+.input__bundle button:disabled {
+  filter: brightness(60%);
+  cursor: default;
+}
+.input__bundle button:hover:enabled {
   filter: brightness(110%);
 }
-.game-input-container .input__bundle button:active {
+.input__bundle button:active:enabled {
   filter: brightness(120%);
 }
 
-.race-winner {
+#race-winner-name {
   margin: 20px 0 0 0;
 }
 
-.race-restart__button {
+#game-restart__button {
   width: 150px;
   height: 36px;
 
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -113,26 +106,26 @@ section {
 
   cursor: pointer;
 }
-.race-restart__button button:hover {
+#game-restart__button button:hover {
   filter: brightness(110%);
 }
-.race-restart__button button:active {
+#game-restart__button button:active {
   filter: brightness(120%);
 }
 
-.race-car-container {
+#car-name-field {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
 
   gap: 10px;
 
-  width: 490px;
+  width: auto;
 
   margin: 10px 0;
 }
 
-.race-log-container {
+#race-log-field {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -142,14 +135,15 @@ section {
 
   gap: 10px;
 
-  width: 490px;
+  width: auto;
   max-height: 160px;
 
-  overflow-y: auto;
+  overflow-y: scroll;
 
   margin: 0 0 10px 0;
 }
-.race-log-container div {
+
+#race-log-field div {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -157,12 +151,10 @@ section {
 
   width: 90px;
 }
-.race-log-personal {
+.race-log {
   display: flex;
   justify-self: flex-start;
   align-self: flex-start;
-
-  width: 50px;
 }
 .race-log-icon {
   display: flex;
