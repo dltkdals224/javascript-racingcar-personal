@@ -1,4 +1,4 @@
-import { $, $$ } from '../lib/util/DOM.js';
+import { $, $$ } from '../lib/util/document.js';
 
 import { deleteAll } from '../lib/util/reset.js';
 import getRandomNumber from '../lib/util/getRandomNumber.js';

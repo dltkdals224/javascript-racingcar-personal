@@ -1,4 +1,4 @@
-import { $ } from '../lib/util/DOM.js';
+import { $ } from '../lib/util/document.js';
 
 import { startGame } from './game.js';
 

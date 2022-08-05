@@ -1,4 +1,4 @@
-import { $ } from '../lib/util/DOM.js';
+import { $ } from '../lib/util/document.js';
 
 const getGameInput = () => {
   const CAR_NAME_INPUT = $('#car-name__input');
