@@ -1,16 +1,17 @@
 import { $, $$ } from '../lib/util/document.js';
 
 import { deleteAll } from '../lib/util/reset.js';
-import getRandomNumber from '../lib/util/getRandomNumber.js';
+import getRandomNumber from '../lib/util/number.js';
 
 export const startGame = (carNum, gameNum) => {
   setField(carNum);
 
   const EACH_RACE_LOG = $$('.race-log');
   const ADVANCED_COUNT = [];
-  for (let i = 0; i < EACH_RACE_LOG.length; i++) {
+
+  Array.from(EACH_RACE_LOG).map((_, i) => {
     ADVANCED_COUNT[i] = 0;
-  }
+  });
 
   const RACE_FIELD = $('#race-log-field');
 
@@ -36,21 +37,23 @@ const findWinner = (numberOfAdvancedLog, gameNum) => {
   const CAR_NAME_CONTAINER = $('#car-name-field');
 
   const PLAYER_LIST = [];
-  for (let k = 0; k < CAR_NAME_CONTAINER.children.length; k++) {
-    PLAYER_LIST[k] = CAR_NAME_CONTAINER.children[k].innerHTML;
-  }
+
+  Array.from(CAR_NAME_CONTAINER.children).map((_, i) => {
+    PLAYER_LIST[i] = CAR_NAME_CONTAINER.children[i].innerHTML;
+  });
 
   const ADVANCES_OF_WINNER = Math.max(...numberOfAdvancedLog);
   const WINNER_LIST = [];
+
   // 우승자 만족 조건
-  for (let i = 0; i < numberOfAdvancedLog.length; i++) {
+  numberOfAdvancedLog.forEach((_, i) => {
     if (numberOfAdvancedLog[i] === ADVANCES_OF_WINNER) {
       WINNER_LIST[i] = true;
     }
     if (numberOfAdvancedLog[i] !== ADVANCES_OF_WINNER) {
       WINNER_LIST[i] = false;
     }
-  }
+  });
 
   // 우승자 출력
   WINNER_NAME.classList.remove('visible__hidden');
