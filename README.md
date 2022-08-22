@@ -31,7 +31,7 @@ live-server 폴더명
 
 ## 👏 Contributing
 
-만약 미션 수행 중에 개선사항이 보인다면, 언제든 자유롭게 PR을 보내주세요. 
+만약 미션 수행 중에 개선사항이 보인다면, 언제든 자유롭게 PR을 보내주세요.
 
 <br>
 
@@ -44,3 +44,34 @@ live-server 폴더명
 ## 📝 License
 
 This project is [MIT](https://github.com/woowacourse/javascript-racingcar/blob/main/LICENSE) licensed.
+
+<br>
+
+## 📈 Commit Unit
+
+- 기본적인 UI 작성
+- UX 반영
+- 경주 이벤트 로직
+- Loader 이벤트 로직
+
+-- 리팩토링
+
+- eslint, prettier setting
+- cypress 테스트 코드 작성
+  - 테스트 : 적절한 자동차 이름을 입력 후 '확인'을 클릭하기 까지의 로직을 확인한다.
+    - 예외 : 이름을 입력하지 않으면 안 됨.
+    - 예외 : 이름이 다섯글자를 넘어가면 안 됨.
+    - 예외 : 이름이 중복되면 안 됨.
+  - 테스트 : 적절한 게임횟수를 입력 후 '확인'을 클릭하기 까지의 로직을 확인한다.
+    - 예외 : 게임횟수를 입력하지 않으면 안 됨.
+    - 예외 : 게임횟수가 0 이하의 수 이면 안 됨.
+    - 예외 : 게임횟수가 정수가 아니면 안 됨.
+  - 테스트 : 전진조건 값의 출력이 제대로 이루어지는지 확인.
+    - 예외 : 0에서 9 사이의 범위를 이탈하는 무작위 값 나온다.
+- 리팩토링
+  - class형 컴포넌트로 재구성 및 적절한 내부인자 보호 처리
+    - carNameInput Logic
+    - gameCountInput Logic
+    - game Logic
+    - reGame Logic
+- Netlify 배포

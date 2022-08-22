@@ -1,14 +1,46 @@
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>🏎️ 자동차 경주 게임</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>🏎️ 자동차 경주 게임</title>
-</head>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
 
-<body>
-  <div id="app">
-  </div>
-</body>
+  <body>
+    <section>
+      <div id="racing-game-container">
+        <div class="game-title">🏎️ 자동차 경주 게임 🏎️</div>
 
+        <div id="car-name-container">
+          <span class="input__info"> 5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요. </span>
+          <div class="input__bundle">
+            <input id="car-name__input" type="text" />
+            <button id="car-name__button">확인</button>
+          </div>
+        </div>
+
+        <div id="game-count-container" class="visible__hidden">
+          <span class="input__info">시도할 횟수를 입력해주세요.</span>
+          <div class="input__bundle">
+            <input id="game-count__input" type="number" />
+            <button id="game-count__button">확인</button>
+          </div>
+        </div>
+
+        <div id="car-name-field" class="visible__hidden"></div>
+        <div id="race-log-field"></div>
+
+        <div id="race-winner-name" class="visible__hidden"></div>
+        <button id="game-restart__button" class="visible__hidden">다시 시작하기</button>
+      </div>
+    </section>
+
+    <script src="/script/nameInput.js" type="module"></script>
+    <script src="/script/countInput.js" type="module"></script>
+    <script src="/script/game.js" type="module"></script>
+
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+  </body>
 </html>
