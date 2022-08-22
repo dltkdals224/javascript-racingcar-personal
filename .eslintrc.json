@@ -13,12 +13,11 @@
     "ecmaVersion": 2020,
     "sourceType": "module",
     "ecmaFeatures": {
-      "jsx": true
+      "jsx": false
     },
     "ecmaVersion": 12
   },
   "rules": {
-    "react/no-unknown-property": "off",
     "no-unused-vars": "warn",
     "no-var": "error",
     "max-depth": ["error", 2],
@@ -30,5 +29,5 @@
     "es6": true
   },
 
-  "plugins": ["import", "react-hooks", "prettier"]
+  "plugins": ["import", "prettier"]
 }
