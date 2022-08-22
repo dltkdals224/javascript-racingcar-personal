@@ -1,39 +1,37 @@
 import { $ } from '../lib/util/document.js';
 
 const getGameInput = () => {
-  const CAR_NAME_INPUT = $('#car-name__input');
-  const CAR_NAME_BUTTON = $('#car-name__button');
+  const carNameInput = $('#car-name__input');
+  const carNameButton = $('#car-name__button');
+  const gameInputContainer = $('#game-count-container');
+  const racerNameContainer = $('#car-name-field');
 
-  const GAME_INPUT_CONTAINER = $('#game-count-container');
-
-  const RACER_NAME_CONTAINER = $('#car-name-field');
-
-  const CAR_NAME_ARRAY = CAR_NAME_INPUT.value.split(',');
+  const CAR_NAME_ARRAY = carNameInput.value.split(',');
   const IS_VALID = isValidInputValueOfCarName(CAR_NAME_ARRAY);
 
   if (IS_VALID) {
-    GAME_INPUT_CONTAINER.classList.remove('visible__hidden');
-    RACER_NAME_CONTAINER.classList.remove('visible__hidden');
+    gameInputContainer.classList.remove('visible__hidden');
+    racerNameContainer.classList.remove('visible__hidden');
 
     setCarNameList(CAR_NAME_ARRAY);
 
-    CAR_NAME_INPUT.readOnly = true;
-    CAR_NAME_BUTTON.disabled = true;
+    carNameInput.readOnly = true;
+    carNameButton.disabled = true;
   }
 };
 
 const setCarNameList = carNameArray => {
-  const CAR_NAME_CONTAINER = $('#car-name-field');
+  const carNameContainer = $('#car-name-field');
 
   carNameArray.map((name, ind) => {
-    const SINGLE_RACE_LOG = document.createElement('div');
+    const singleRaceLog = document.createElement('div');
 
-    SINGLE_RACE_LOG.innerHTML = name;
+    singleRaceLog.innerHTML = name;
 
-    SINGLE_RACE_LOG.classList.add('car-name__li');
-    SINGLE_RACE_LOG.setAttribute('id', ind);
+    singleRaceLog.classList.add('car-name__li');
+    singleRaceLog.setAttribute('id', ind);
 
-    CAR_NAME_CONTAINER.appendChild(SINGLE_RACE_LOG);
+    carNameContainer.appendChild(singleRaceLog);
   });
 };
 
@@ -75,7 +73,7 @@ const isValidInputValueOfCarName = carNameArray => {
 };
 
 (function () {
-  const CAR_NAME_BUTTON = $('#car-name__button');
+  const carNameButton = $('#car-name__button');
 
-  CAR_NAME_BUTTON.addEventListener('click', getGameInput);
+  carNameButton.addEventListener('click', getGameInput);
 })();
